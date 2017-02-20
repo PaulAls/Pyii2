@@ -126,7 +126,27 @@ class Article extends \yii\db\ActiveRecord
     public function getSelectedTags()
     {
        $selectedIds = $this->getTags()->select('id')->asArray()->all();
-       ArrayHelper::getColumn($selectedIds, 'id');
+       return ArrayHelper::getColumn($selectedIds, 'id');
+    }
+
+    public function saveTags($tags)
+    {
+        if (is_array($tags))
+        {
+            $this->clearCurrentTags();
+
+            foreach ($tags as $tag_id)
+            {
+                $tag = Tag::findOne($tag_id);
+                $this->link('tags', $tag);
+            }
+        }
+    }
+
+    public function clearCurrentTags()
+    {
+
+        ArticleTag::deleteAll(['article_id'=>$this->id]);
     }
 
 }

@@ -122,4 +122,12 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionEvents(){
+        return $this->render('event');
+    }
+
+    public function actionOur(){
+        return $this->render('our');
+    }
 }

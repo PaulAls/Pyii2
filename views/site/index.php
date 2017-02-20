@@ -1,53 +1,110 @@
-<?php
-
-/* @var $this yii\web\View */
-
-$this->title = 'My Yii Application';
-?>
-<div class="site-index">
-
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+<?php use yii\helpers\Url;?>
+<!-- header-inner -->
+<div class="header-inner">
+    <div class="logo with-shadow">
+        <a href="/">
+            <img src="/public/img/PaulAls2.png" style="pointer-events: none" alt="PaulALs">
+        </a>
     </div>
 
-    <div class="body-content">
+    <a id="mnu-modal-01" href="#modal-01" class="nav-btn">
+        <div class="nav-img"></div>
+    </a>
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+</div>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+<!-- body-content/baner -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            CONTENT CENTER BANER
+        </div>
+    </div>
+</div>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+<!--MODAL-->
+<div id="modal-01">
+    <!--"THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID-->
+    <div  id="btn-close-modal" class="close-modal-01">
+        <div class="nav-close"></div>
+    </div>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+    <div class="modal-content">
+        <div class="container">
+            <div class="row">
+                <!--NAV CONTENT-->
+                <div class="col-sm-6">
+                    <nav class="modal-nav">
+                        <ul id="menu-item"></ul>
+                        <li id="menu-item-home" class="menu-item-li"><a style="color: #ff0000; border-color: red; font-size: 35px;" href="/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                        <li id="menu-item-add-event" class="menu-item-li"><a href="<?= Url::toRoute(['site/events']); ?>">События    </a></li>
+                        <li id="menu-item-persons" class="menu-item-li"><a href="">Малютка Свои</a></li>
+                        <li id="menu-item-gallery" class="menu-item-li"><a href="">Галерея</a></li>
+                        <li id="menu-item-contact" class="menu-item-li"><a href="">Контакты</a></li>
+                    </nav>
+                </div>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+
+                <!--SOCIAL CONTENT-->
+                <div class="col-sm-6">
+                    <div class="modal-soc">
+                        <ul id="menu-notes" class="menu-commet-li">Быстрые Заметки</ul>
+
+                        <li id="menu-add-comment" class="menu-commet-li">
+                            <div class="menu-add-comment-wrap">
+                                <div class="photo-wrap text-right">
+                                    <a href="#" id="menu-add-comment-photo"><img src="/public/img/pers/2.png" alt=""></a>
+                                </div>
+                                <div class="message-wrap text-right">
+                                    <a href="#" id="menu-add-comment-name">Никита</a>
+                                    <p id="menu-add-comment-note">Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. </p>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li id="menu-add-comment" class="menu-commet-li">
+                            <div class="menu-add-comment-wrap">
+                                <div class="photo-wrap text-right">
+                                    <a href="#" id="menu-add-comment-photo"><img src="/public/img/pers/1.png" alt=""></a>
+                                </div>
+                                <div class="message-wrap text-right">
+                                    <a href="#" id="menu-add-comment-name">Андрей</a>
+                                    <p id="menu-add-comment-note">Далеко-далеко. </p>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li id="menu-add-comment" class="menu-commet-li">
+                            <div class="menu-add-comment-wrap">
+                                <div class="photo-wrap text-right">
+                                    <a href="#" id="menu-add-comment-photo"><img src="/public/img/pers/1.png" alt=""></a>
+                                </div>
+                                <div class="message-wrap text-right">
+                                    <a href="#" id="menu-add-comment-name">Андрей</a>
+                                    <p id="menu-add-comment-note">Далеко-далеко. </p>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li id="menu-add-comment" class="menu-commet-li">
+                            <div class="menu-add-comment-wrap">
+                                <div class="photo-wrap text-right">
+                                    <a href="#" id="menu-add-comment-photo"><img src="/public/img/pers/3.png" alt=""></a>
+                                </div>
+                                <div class="message-wrap text-right">
+                                    <a href="#" id="menu-add-comment-name">Димуля</a>
+                                    <p id="menu-add-comment-note">Далеко-далеко за словесными горами в . </p>
+                                </div>
+                            </div>
+                        </li>
+
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
 </div>

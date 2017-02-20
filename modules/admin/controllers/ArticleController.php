@@ -151,26 +151,37 @@ class ArticleController extends Controller
         $article = $this->findModel($id);
         $selectedCategory = $article->category->id;
         $categories = ArrayHelper::map(Category::find()->all(), 'id', 'title');
-
-
+        if(Yii::$app->request->isPost)
+        {
+            $category = Yii::$app->request->post('category');
+            if($article->saveCategory($category))
+            {
+                return $this->redirect(['view', 'id'=>$article->id]);
+            }
+        }
         return $this->render('category', [
-            'article' => $article,
-            'selectedCategory' => $selectedCategory,
-            'categories' => $categories
+            'article'=>$article,
+            'selectedCategory'=>$selectedCategory,
+            'categories'=>$categories
         ]);
     }
 
     public function actionSetTags($id)
     {
-        $article = $this->findModel($id); 
+        $article = $this->findModel($id);
         $selectedTags = $article->getSelectedTags();
-        $tags =ArrayHelper::map(Tag::find()->all(), 'id', 'title');
+        $tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
+        if(Yii::$app->request->isPost)
+        {
+            $tags = Yii::$app->request->post('tags');
+            $article->saveTags($tags);
+            return $this->redirect(['view', 'id'=>$article->id]);
+        }
 
         return $this->render('tags', [
             'selectedTags'=>$selectedTags,
-        'tags'=>$tags
+            'tags'=>$tags
         ]);
-
     }
 
 }
