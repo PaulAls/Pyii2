@@ -40,9 +40,9 @@
                         <ul id="menu-item"></ul>
                         <li id="menu-item-home" class="menu-item-li"><a style="color: #ff0000; border-color: red; font-size: 35px;" href="/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
                         <li id="menu-item-add-event" class="menu-item-li"><a href="<?= Url::toRoute(['site/events']); ?>">События    </a></li>
-                        <li id="menu-item-persons" class="menu-item-li"><a href="">Малютка Свои</a></li>
-                        <li id="menu-item-gallery" class="menu-item-li"><a href="">Галерея</a></li>
-                        <li id="menu-item-contact" class="menu-item-li"><a href="">Контакты</a></li>
+                        <li id="menu-item-persons" class="menu-item-li"><a href="<?= Url::toRoute(['site/our']); ?>">Малютка Свои</a></li>
+                        <li id="menu-item-gallery" class="menu-item-li"><a href="<?= Url::toRoute(['site/gallery']); ?>">Галерея</a></li>
+                        <li id="menu-item-contact" class="menu-item-li"><a href="<?= Url::toRoute(['site/contact']); ?>">Контакты</a></li>
                     </nav>
                 </div>
 

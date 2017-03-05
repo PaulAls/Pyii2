@@ -89,7 +89,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         // TODO: Implement validateAuthKey() method.
     }
 
-    public function findByUserName($username)
+    public static function findByUserName($username)
     {
         return User::find()->where(['name'=>$username])->one();
     }
@@ -104,5 +104,31 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         {
             return false;
         }
+    }
+
+    public function create()
+    {
+        return $this->save(false);
+    }
+
+    public function saveFromVk($uid, $name, $photo)
+    {
+        $user = User::findOne($uid);
+
+        if ($user){
+            return Yii::$app->user->login($user);
+        }
+
+        $this->id = $uid;
+        $this->name = $name;
+        $this->photo = $photo;
+        $this->create();
+
+      return  Yii::$app->user->login($this);
+    }
+
+    public function getImage()
+    {
+        return $this->photo;
     }
 }

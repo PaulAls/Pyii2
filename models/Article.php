@@ -76,7 +76,7 @@ class Article extends \yii\db\ActiveRecord
     public function getImage()
     {
 
-        if ($this->image){
+        if ($this->image) {
 
             return '/uploads/' . $this->image;
         }
@@ -110,10 +110,10 @@ class Article extends \yii\db\ActiveRecord
     {
 
         $category = Category::findOne($category_id);
-       if ($category !=null){
-           $this->link('category', $category);
-           return true;
-       }
+        if ($category != null) {
+            $this->link('category', $category);
+            return true;
+        }
 
     }
 
@@ -125,18 +125,16 @@ class Article extends \yii\db\ActiveRecord
 
     public function getSelectedTags()
     {
-       $selectedIds = $this->getTags()->select('id')->asArray()->all();
-       return ArrayHelper::getColumn($selectedIds, 'id');
+        $selectedIds = $this->getTags()->select('id')->asArray()->all();
+        return ArrayHelper::getColumn($selectedIds, 'id');
     }
 
     public function saveTags($tags)
     {
-        if (is_array($tags))
-        {
+        if (is_array($tags)) {
             $this->clearCurrentTags();
 
-            foreach ($tags as $tag_id)
-            {
+            foreach ($tags as $tag_id) {
                 $tag = Tag::findOne($tag_id);
                 $this->link('tags', $tag);
             }
@@ -145,8 +143,29 @@ class Article extends \yii\db\ActiveRecord
 
     public function clearCurrentTags()
     {
-
-        ArticleTag::deleteAll(['article_id'=>$this->id]);
+        ArticleTag::deleteAll(['article_id' => $this->id]);
     }
+
+    public function saveArticle()
+    {
+        $this->user_id = Yii::$app->user->id;
+        return $this->save();
+    }
+
+    public static function getRecent()
+    {
+        return Article::find()->orderBy('date asc')->limit(4)->all();
+    }
+
+    public function getComments()
+    {
+        return $this->hasMany(Comment::className(), ['article_id'=>'id']);
+    }
+
+    public function getArticleComments()
+    {
+        return $this->getComments()->where(['status'=>1])->all();
+    }
+
 
 }

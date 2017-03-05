@@ -2,6 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\Article;
+use app\models\Category;
+use app\models\Chat;
+use app\models\CommentForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -11,6 +15,8 @@ use app\models\ContactForm;
 
 class SiteController extends Controller
 {
+
+
     /**
      * @inheritdoc
      */
@@ -60,6 +66,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+
+
         return $this->render('index');
     }
 
@@ -123,11 +131,50 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    public function actionEvents(){
-        return $this->render('event');
+
+    public function actionEvents()
+    {
+        $fastComment = Chat::getRecent();
+       // $popular = Chat::find()->orderBy('date desc')->all();
+        return $this->render('event', [
+            'fastComment'=>$fastComment,
+       //     'popular' => $popular
+
+        ]);
     }
 
-    public function actionOur(){
-        return $this->render('our');
+    public function actionAdd()
+    {
+
+        $chat = 
+
+        return $this->render('about');
     }
+
+
+
+    public function actionOur()
+    {
+
+
+        $recent = Article::getRecent();
+        //$comments = $article->getArticleComments();
+        $commentForm = new CommentForm();
+
+
+        return $this->render('our', [
+            //'article'=>$article,
+            'recent' => $recent,
+            //  'comments'=>$comments,
+            'commentForm' => $commentForm
+        ]);
+    }
+
+    public function actionGallery()
+    {
+        $time = date('H:i:s');
+        return $this->render('gallery', ['time' => $time]);
+    }
+
+
 }

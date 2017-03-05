@@ -12,6 +12,8 @@ namespace app\controllers;
 
 
 use app\models\LoginForm;
+use app\models\SignupForm;
+use app\models\User;
 use Yii;
 use yii\web\Controller;
 
@@ -25,6 +27,7 @@ class AuthController extends Controller
         }
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+
             return $this->goBack();
         }
         return $this->render('/site/login', [
@@ -53,7 +56,7 @@ class AuthController extends Controller
                 return $this->redirect(['auth/login']);
             }
         }
-        return $this->render('signup', ['model'=>$model]);
+        return $this->render('/site/signup', ['model'=>$model]);
     }
     public function actionLoginVk($uid, $first_name, $photo)
     {
@@ -66,8 +69,8 @@ class AuthController extends Controller
 
     public function actionTest()
     {
-        $user = User::findOne(1);
-        Yii::$app->user->logout();
+        $user = User::findOne(0);
+        //Yii::$app->user->logout();
 
         if(Yii::$app->user->isGuest)
         {
