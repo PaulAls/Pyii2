@@ -19,7 +19,8 @@ class PublicAsset extends AssetBundle
         "public/libs/jquery/dist/jquery.min.js",
         "public/libs/vegas/vegas.js",
         "public/libs/animatedModal/animatedModal.min.js",
-        "public/js/scripts.min.js"
+        "public/js/scripts.min.js",
+        "public/js/js.js"
     ];
     public $depends = [
 

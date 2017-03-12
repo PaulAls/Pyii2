@@ -9,7 +9,11 @@
 namespace app\models;
 
 
-class ChatForm
+use Codeception\Lib\Console\Message;
+use Yii;
+use yii\base\Model;
+
+class ChatForm extends Model
 {
     public $message;
 
@@ -17,7 +21,25 @@ class ChatForm
     {
         return [
             [['message'], 'required'],
-            [['message'], 'string', 'length' => [3, 250]]
+            [['message'], 'string', 'length' => [2, 70]],
+            [['message'], 'trim']
         ];
+    }
+
+    public function saveMessage($chat_id)
+    {
+
+        if ($this->validate())
+        {
+            $message = new Chat();
+            $message->chat_id = $chat_id;
+            $message->text = $this->message;
+            $message->user_id = Yii::$app->user->id;
+            return $message->save();
+
+        }
+
+
+
     }
 }

@@ -11,6 +11,19 @@ namespace app\models;
 
 use yii\db\ActiveRecord;
 
+/**
+ * This is the model class for table "comment".
+ *
+ * @property integer $id
+ * @property string $text
+ * @property integer $chat_id
+ * @property integer $user_id
+ * @property integer $status
+ * @property string $date
+ *
+ * @property Article $article
+ * @property User $user
+*/
 class Chat extends ActiveRecord
 {
     public static function tableName()

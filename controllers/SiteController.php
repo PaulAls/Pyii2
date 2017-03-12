@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Article;
 use app\models\Category;
 use app\models\Chat;
+use app\models\ChatForm;
 use app\models\CommentForm;
 use Yii;
 use yii\filters\AccessControl;
@@ -66,9 +67,15 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        if(Yii::$app->user->isGuest)  return $this->redirect(['login']);
 
+        $chatForm = new ChatForm();
+        $fastComment = Chat::getRecent();
 
-        return $this->render('index');
+        return $this->render('index', [
+            'fastComment'=>$fastComment,
+            'chatForm'=>$chatForm
+        ]);
     }
 
     /**
@@ -134,21 +141,32 @@ class SiteController extends Controller
 
     public function actionEvents()
     {
+        $chatForm = new ChatForm();
         $fastComment = Chat::getRecent();
-       // $popular = Chat::find()->orderBy('date desc')->all();
         return $this->render('event', [
             'fastComment'=>$fastComment,
-       //     'popular' => $popular
+            'chatForm'=>$chatForm
 
         ]);
     }
 
-    public function actionAdd()
+    public function actionMessage($chat_id = 1)
     {
+        $model = new ChatForm();
 
-        $chat = 
 
-        return $this->render('about');
+        if (Yii::$app->request->isAjax)
+        {
+
+            $model->load(Yii::$app->request->post());
+            if ($model->saveMessage($chat_id))
+            {
+                die('da');
+               // return $this->redirect(['index']);
+            }
+        }
+            die('no');
+        //return $this->redirect(['index']);
     }
 
 
@@ -156,16 +174,11 @@ class SiteController extends Controller
     public function actionOur()
     {
 
-
         $recent = Article::getRecent();
-        //$comments = $article->getArticleComments();
         $commentForm = new CommentForm();
 
-
         return $this->render('our', [
-            //'article'=>$article,
             'recent' => $recent,
-            //  'comments'=>$comments,
             'commentForm' => $commentForm
         ]);
     }
@@ -175,6 +188,5 @@ class SiteController extends Controller
         $time = date('H:i:s');
         return $this->render('gallery', ['time' => $time]);
     }
-
 
 }

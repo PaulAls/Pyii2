@@ -1,4 +1,5 @@
-<?php use yii\helpers\Url;?>
+<?php use yii\helpers\Url;
+use yii\widgets\ActiveForm; ?>
 <!-- header-inner -->
 <div class="header-inner">
     <div class="logo with-shadow">
@@ -50,57 +51,41 @@
                 <!--SOCIAL CONTENT-->
                 <div class="col-sm-6">
                     <div class="modal-soc">
-                        <ul id="menu-notes" class="menu-commet-li">Быстрые Заметки</ul>
+                        <ul id="menu-notes" class="menu-commet-li">
 
-                        <li id="menu-add-comment" class="menu-commet-li">
-                            <div class="menu-add-comment-wrap">
-                                <div class="photo-wrap text-right">
-                                    <a href="#" id="menu-add-comment-photo"><img src="/public/img/pers/2.png" alt=""></a>
-                                </div>
-                                <div class="message-wrap text-right">
-                                    <a href="#" id="menu-add-comment-name">Никита</a>
-                                    <p id="menu-add-comment-note">Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. </p>
-                                </div>
-                            </div>
-                        </li>
+                        <?php $form = ActiveForm::begin([
+                            'action'=>['site/message'],'options'=> ['class'=> 'add', 'role'=> 'form']]); ?>
 
+                        <?= $form->field($chatForm, 'message',['options'=>['class'=>'form-group add-msg','id'=> 'add']])->
+                        textInput(['autocomplete'=>'off','placeholder'=>'Добавьте комментарий...', 'style'=>'color: #fff;  background: none; border: none;']
+                        )->label(false);?>
 
-                        <li id="menu-add-comment" class="menu-commet-li">
-                            <div class="menu-add-comment-wrap">
-                                <div class="photo-wrap text-right">
-                                    <a href="#" id="menu-add-comment-photo"><img src="/public/img/pers/1.png" alt=""></a>
-                                </div>
-                                <div class="message-wrap text-right">
-                                    <a href="#" id="menu-add-comment-name">Андрей</a>
-                                    <p id="menu-add-comment-note">Далеко-далеко. </p>
-                                </div>
-                            </div>
-                        </li>
+                        <?php ActiveForm::end() ?>
 
-                        <li id="menu-add-comment" class="menu-commet-li">
-                            <div class="menu-add-comment-wrap">
-                                <div class="photo-wrap text-right">
-                                    <a href="#" id="menu-add-comment-photo"><img src="/public/img/pers/1.png" alt=""></a>
-                                </div>
-                                <div class="message-wrap text-right">
-                                    <a href="#" id="menu-add-comment-name">Андрей</a>
-                                    <p id="menu-add-comment-note">Далеко-далеко. </p>
-                                </div>
-                            </div>
-                        </li>
+                        <!-- Быстрые Заметки -->
 
+                        </ul>
 
-                        <li id="menu-add-comment" class="menu-commet-li">
-                            <div class="menu-add-comment-wrap">
-                                <div class="photo-wrap text-right">
-                                    <a href="#" id="menu-add-comment-photo"><img src="/public/img/pers/3.png" alt=""></a>
+                        <?php foreach ($fastComment as $chat): ?>
+                            <li id="menu-add-comment" class="menu-commet-li">
+                                <div class="menu-add-comment-wrap">
+                                    <div class="photo-wrap text-right">
+                                        <a href="#" id="menu-add-comment-photo"><img width="50" style="border-radius: 5px;"
+                                                                                     src="<?= $chat->user->image; ?>"
+                                                                                     alt=""></a>
+                                    </div>
+                                    <div class="message-wrap text-right">
+
+                                        <a href="#" id="menu-add-comment-name"><?= $chat->user->name; ?></a>
+
+                                        <p id="menu-add-comment-note">
+                                            <?= $chat->text; ?>
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="message-wrap text-right">
-                                    <a href="#" id="menu-add-comment-name">Димуля</a>
-                                    <p id="menu-add-comment-note">Далеко-далеко за словесными горами в . </p>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
+                        <?php endforeach; ?>
+
 
                     </div>
                 </div>
