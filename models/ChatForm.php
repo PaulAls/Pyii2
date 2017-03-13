@@ -10,6 +10,7 @@ namespace app\models;
 
 
 use Codeception\Lib\Console\Message;
+use Faker\Provider\DateTime;
 use Yii;
 use yii\base\Model;
 
@@ -35,6 +36,8 @@ class ChatForm extends Model
             $message->chat_id = $chat_id;
             $message->text = $this->message;
             $message->user_id = Yii::$app->user->id;
+            $message->date = date("Y-m-d");
+            $message->status = 1;
             return $message->save();
 
         }

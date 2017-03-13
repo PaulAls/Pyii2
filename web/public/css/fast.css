@@ -1,0 +1,44 @@
+/* body-content/baner */
+.wrap-disript {
+    position: relative;
+    margin-top: 25%;
+}
+
+.wrap-border {
+    border: 3px solid #B2C504;
+    width: 680px;
+    height: 535px;
+    position: absolute;
+    margin-left: 20%;
+    margin-top: -10%;
+    z-index: -1;
+}
+
+.smal-discript {
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.large-disript-center-top,
+.large-disript-center-bottom {
+    margin: 10px;
+    font-size: 80px;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.latest-discript {
+    margin: auto;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom: 1px solid #B2C504;
+    width: 140px;
+    padding-top: 25px;
+}
+
+/*todo*/
+

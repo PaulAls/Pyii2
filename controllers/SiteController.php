@@ -7,6 +7,7 @@ use app\models\Category;
 use app\models\Chat;
 use app\models\ChatForm;
 use app\models\CommentForm;
+use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -71,10 +72,12 @@ class SiteController extends Controller
 
         $chatForm = new ChatForm();
         $fastComment = Chat::getRecent();
+        $lastVideoYouTube = 'https://www.youtube.com/watch?v=EtHifo-LIrg';
 
         return $this->render('index', [
             'fastComment'=>$fastComment,
-            'chatForm'=>$chatForm
+            'chatForm'=>$chatForm,
+            'lastVideoYouTube'=> $lastVideoYouTube
         ]);
     }
 
@@ -141,6 +144,7 @@ class SiteController extends Controller
 
     public function actionEvents()
     {
+
         $chatForm = new ChatForm();
         $fastComment = Chat::getRecent();
         return $this->render('event', [
@@ -155,18 +159,30 @@ class SiteController extends Controller
         $model = new ChatForm();
 
 
-        if (Yii::$app->request->isAjax)
-        {
 
+
+        if (Yii::$app->request->isPost)
+        {
             $model->load(Yii::$app->request->post());
+
+
+
             if ($model->saveMessage($chat_id))
             {
-                die('da');
-               // return $this->redirect(['index']);
+                $user = User::findByUserId(Yii::$app->user->id);
+
+              // return $this->redirect(['index']);
+                $json = array(
+                    'message'=> $model->message,
+                    'user_name'=> $user->name,
+                    'photo'=> $user->image
+                );
+
+                return $this->asJson($json);
             }
         }
-            die('no');
-        //return $this->redirect(['index']);
+
+        return $this->redirect(['index']);
     }
 
 
@@ -185,6 +201,7 @@ class SiteController extends Controller
 
     public function actionGallery()
     {
+
         $time = date('H:i:s');
         return $this->render('gallery', ['time' => $time]);
     }

@@ -1,4 +1,9 @@
-
+<?php
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\widgets\ActiveForm;
+use yii\widgets\Pjax;
+?>
 <div class="header-inner">
     <div class="logo with-shadow">
         <a href="/">
@@ -9,9 +14,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
-            <?php use yii\helpers\Html;
-            use yii\helpers\Url;
-            use yii\widgets\ActiveForm;
+            <?php
 
             if (Yii::$app->user->isGuest):?>
                 <li><a href="<?= Url::toRoute(['auth/login']) ?>">Login</a></li>
@@ -29,26 +32,9 @@
         <!--SOCIAL CONTENT-->
         <div class="col-sm-6">
             <div class="modal-soc">
+
+                <!-- Быстрые Заметки -->
                 <ul id="menu-notes" class="menu-commet-li">
-                    <!-- Быстрые Заметки -->
-
-
-                  <!--  <form class="add" action="">
-
-
-                        <input class="add-msg" aria-label="Добавьте комментарий..."
-                               placeholder="Добавьте комментарий..."
-                               style=
-                               "
-                                background: none;
-                                color: #fff;
-                                font-size: 15px;
-                                border: none;
-                                "
-                               type="text" value="">
-                    </form>
-
-                    -->
                     <?php $form = ActiveForm::begin([
                             'action'=>['site/message'],'options'=> ['class'=> 'add', 'role'=> 'form']]); ?>
 
@@ -57,22 +43,19 @@
                         )->label(false);?>
 
                     <?php ActiveForm::end() ?>
-
-                    <!-- Быстрые Заметки -->
-
                 </ul>
 
                 <?php foreach ($fastComment as $chat): ?>
                     <li id="menu-add-comment" class="menu-commet-li">
                         <div class="menu-add-comment-wrap">
                             <div class="photo-wrap text-right">
-                                <a href="#" id="menu-add-comment-photo"><img width="50" style="border-radius: 5px;"
+                                <a href="https://vk.com/id<?= $chat->user->id ?>" id="menu-add-comment-photo"><img width="50" style="border-radius: 5px;"
                                                                              src="<?= $chat->user->image; ?>"
                                                                              alt=""></a>
                             </div>
                             <div class="message-wrap text-right">
 
-                                <a href="#" id="menu-add-comment-name"><?= $chat->user->name; ?></a>
+                                <a href="https://vk.com/id<?= $chat->user->id ?>" id="menu-add-comment-name"><?= $chat->user->name; ?></a>
 
                                 <p id="menu-add-comment-note">
                                     <?= $chat->text; ?>
@@ -82,7 +65,6 @@
                     </li>
                 <?php endforeach; ?>
 
-        <button class="btn btn-success" id="btn-click-test">Click</button>
 
             </div>
         </div>

@@ -131,4 +131,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->photo;
     }
+
+    public static function findByUserId($id)
+    {
+        return User::find()->where(['id'=>$id])->one();
+    }
+
 }

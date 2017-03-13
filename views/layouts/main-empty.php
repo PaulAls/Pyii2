@@ -20,9 +20,8 @@ PublicAsset::register($this);
     <?php $this->head() ?>
 </head>
 
-<body class="vegas-slider vegas-overlay">
+<body>
 <?php $this->beginBody() ?>
-
 
 <?= $content ?>
 
