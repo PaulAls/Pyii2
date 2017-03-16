@@ -69,7 +69,6 @@ class SiteController extends Controller
     public function actionIndex()
     {
         if(Yii::$app->user->isGuest)  return $this->redirect(['login']);
-
         $chatForm = new ChatForm();
         $fastComment = Chat::getRecent();
         $lastVideoYouTube = 'https://www.youtube.com/watch?v=EtHifo-LIrg';
@@ -109,7 +108,6 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
         return $this->goHome();
     }
 
@@ -123,7 +121,6 @@ class SiteController extends Controller
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
-
             return $this->refresh();
         }
         return $this->render('contact', [
@@ -158,14 +155,9 @@ class SiteController extends Controller
     {
         $model = new ChatForm();
 
-
-
-
         if (Yii::$app->request->isPost)
         {
             $model->load(Yii::$app->request->post());
-
-
 
             if ($model->saveMessage($chat_id))
             {
@@ -201,9 +193,18 @@ class SiteController extends Controller
 
     public function actionGallery()
     {
+        $this->layout = 'main-empty';
+        if(Yii::$app->user->isGuest)  return $this->redirect(['login']);
+        $chatForm = new ChatForm();
+        $fastComment = Chat::getRecent();
+        $lastVideoYouTube = 'https://www.youtube.com/watch?v=EtHifo-LIrg';
 
-        $time = date('H:i:s');
-        return $this->render('gallery', ['time' => $time]);
+
+        return $this->render('gallery', [
+            'fastComment'=>$fastComment,
+            'chatForm'=>$chatForm,
+            'lastVideoYouTube'=> $lastVideoYouTube
+        ]);
     }
 
 }

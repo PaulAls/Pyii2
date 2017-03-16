@@ -4,14 +4,13 @@ use yii\widgets\ActiveForm; ?>
 <div class="header-inner">
     <div class="logo with-shadow">
         <a href="/">
-            <img src="/public/img/PaulAls2.png" style="pointer-events: none" alt="PaulALs">
+            <img src="/public/img/PaulAls4.png" style="pointer-events: none" alt="PaulALs">
         </a>
     </div>
 
     <a id="mnu-modal-01" href="#modal-01" class="nav-btn">
         <div class="nav-img"></div>
     </a>
-
 </div>
 
 <!-- body-content/baner -->
@@ -20,7 +19,7 @@ use yii\widgets\ActiveForm; ?>
         <div class="col-md-12">
 
             <div class="wrap-disript">
-                <div class="wrap-border"></div>
+                <div class="wrap-border animated "></div>
                 <div class="smal-discript">такое в театре не покажут</div>
                 <div class="large-disript-center-top">история похождений</div>
                 <div class="large-disript-center-bottom">свои малютка</div>
@@ -32,8 +31,6 @@ use yii\widgets\ActiveForm; ?>
         </div>
     </div>
 </div>
-
-
 <!--MODAL-->
 <div id="modal-01">
     <!--"THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID-->
@@ -69,7 +66,7 @@ use yii\widgets\ActiveForm; ?>
                         <!-- Быстрые Заметки -->
                         <ul id="menu-notes" class="menu-commet-li">
                             <?php $form = ActiveForm::begin([
-                                'action' => ['site/message'], 'options' => ['class' => 'add', 'role' => 'form']]); ?>
+                                'action' => ['site/message'], 'options' => ['class' => 'add', 'role' => 'form', ], 'enableClientValidation' => false]); ?>
 
                             <?= $form->field($chatForm, 'message', ['options' => ['class' => 'form-group add-msg', 'id' => 'add']])->
                             textInput(['autocomplete' => 'off', 'placeholder' => 'Добавьте комментарий...', 'style' => 'color: #fff;  background: none; border: none;']

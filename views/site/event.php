@@ -31,12 +31,12 @@ use yii\widgets\Pjax;
 
         <!--SOCIAL CONTENT-->
         <div class="col-sm-6">
-            <div class="modal-soc">
+            <div class="modal-soc animated fadeInDown">
 
                 <!-- Быстрые Заметки -->
                 <ul id="menu-notes" class="menu-commet-li">
                     <?php $form = ActiveForm::begin([
-                            'action'=>['site/message'],'options'=> ['class'=> 'add', 'role'=> 'form']]); ?>
+                            'action'=>['site/message'],'options'=> ['class'=> 'add', 'role'=> 'form'], 'enableClientValidation' => false]); ?>
 
                     <?= $form->field($chatForm, 'message',['options'=>['class'=>'form-group add-msg','id'=> 'add']])->
                     textInput(['autocomplete'=>'off','placeholder'=>'Добавьте комментарий...', 'style'=>'color: #fff;  background: none; border: none;']
@@ -64,7 +64,6 @@ use yii\widgets\Pjax;
                         </div>
                     </li>
                 <?php endforeach; ?>
-
 
             </div>
         </div>

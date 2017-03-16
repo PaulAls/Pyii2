@@ -89,6 +89,14 @@
         margin-top: 22%;
     
     }
+    #mnu-modal-01,
+    #btn-close-modal{
+        background: none;
+    }
+
+    .logo {
+        display: none;
+    }
 }
 
         /* Custom, iPhone Retina */

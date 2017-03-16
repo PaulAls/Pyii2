@@ -40,5 +40,16 @@
     padding-top: 25px;
 }
 
+.logo{
+    z-index: 1;
+}
+#mnu-modal-01{
+    z-index: 1;
+}
+/*ДЛЯ ФОТОРАМЫ OVERLAY*/
+.fotorama__html{
+    background: transparent url("../libs/fotorama-4.6.4/overlays/02.png") center center repeat;
+}
+
 /*todo*/
 

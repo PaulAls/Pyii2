@@ -3,11 +3,12 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\assets\AppAsset;
 use app\assets\PublicAsset;
 use yii\helpers\Html;
 
 
-PublicAsset::register($this);
+AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -20,7 +21,7 @@ PublicAsset::register($this);
     <?php $this->head() ?>
 </head>
 
-<body>
+<body style="background-color:#000;">
 <?php $this->beginBody() ?>
 
 <?= $content ?>
